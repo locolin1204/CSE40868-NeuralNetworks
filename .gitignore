@@ -1,1 +1,3 @@
-resources/
+resources/*
+test.py
+!resources/image-source/testing-source-for-github

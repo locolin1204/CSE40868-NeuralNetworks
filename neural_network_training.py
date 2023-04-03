@@ -5,7 +5,6 @@ import torch
 import torchvision
 import torch.nn as nn
 import torchvision.transforms as transforms
-from torchvision.datasets import CIFAR100, CIFAR10
 from torch.utils.data import DataLoader, Dataset, random_split
 from torchvision.transforms.functional import resize
 from torchvision.transforms import CenterCrop
@@ -23,21 +22,13 @@ class CNN(nn.Module):
         super(CNN, self).__init__()
         self.classes = numClasses
 
-        #######################################################
-        # *** TASK 1 ***
-        # Define your "Lego bricks": all the layers of your CNN
-        # you will be using later in the "forward" function
-        # pytorch implementation: nn.Conv2d
         # you can check https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html
 
-        # If you haven't done so before, consider playing with this demo of CNNs:
         # https://poloclub.github.io/cnn-explainer/
 
-        #######################################################
-        # *** THINK *** What is the relationship between output feature channel and number of kernels?
-        # *** THINK *** Can you draw a picture to describe the relationship among input size,
-        #               kernel size and output size in a convolution layer?
-        #######################################################
+        # What is the relationship between output feature channel and number of kernels?
+        # Can you draw a picture to describe the relationship among input size,
+        # kernel size and output size in a convolution layer?
 
         # Convolutional layers:
         self.conv1 = nn.Conv2d(numChannels, 96, 11, stride=4)
@@ -62,19 +53,15 @@ class CNN(nn.Module):
         self.fc1 = nn.Linear(2304, 1024)
         self.fc2 = nn.Linear(1024, 2)
 
-        #######################################################
-        # *** THINK *** We have very specific numbers of neurons (2304 and 1024)
+        # We have very specific numbers of neurons (2304 and 1024)
         #               in fully-connected layers (fc1 and fc2). Make sure you understand
         #               where these numbers are comming from (and when they can be different).
-        #######################################################
 
-        #######################################################
-        # *** THINK *** As we are using CrossEntropy loss during training, so a softmax activation
+        # As we are using CrossEntropy loss during training, so a softmax activation
         #               function (= implemented as a softmax layer to apply it to the whole layer)
         #               is not needed here since it's already included in Pytorch's implementation
         #               of cross-entropy loss. See this for details:
         #               https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html
-        #######################################################
 
     # Evaluation function
     def evaluate(self, model, dataloader, classes, device):
@@ -111,8 +98,8 @@ class CNN(nn.Module):
             print("------")
             for i in range(2):
                 print(classes[i], ":", correct_pred[classes[i]] / total_pred[classes[i]])
-            # print("correct", correct_pred)
-            # print("total", total_pred)
+                # print("correct", correct_pred)
+                # print("total", total_pred)
         # Calculate the overall accuracy on the test set
         acc = sum(correct_pred.values()) / sum(total_pred.values())
 
@@ -122,12 +109,8 @@ class CNN(nn.Module):
 
         x = resize(x, size=[256])
 
-        #######################################################
-        # *** TASK 1 *** Now Use your "Lego bricks" to build the CNN network
-        #                by defining all operations in a correct order:
 
         # Convolutional, ReLU, MacPooling and Batchnorm layers go first
-        # (see the slides with instructions for the network architecture)
         x = self.conv1(x)
         x = self.relu(x)
         x = self.maxpool(x)
@@ -148,20 +131,15 @@ class CNN(nn.Module):
         x = self.relu(x)
         x = self.maxpool(x)
 
-        # x = self. ...
-        # ...
-
-        # *** THINK *** What if we remove one of the layers? Will the network still work?
+        #  What if we remove one of the layers? Will the network still work?
 
         # After the last pooling operation, and before the first
         # fully-connected layer, we need to "flatten" our tensors
         x = torch.flatten(x, 1)
 
-        # *** THINK *** Can fully-connected layers accept data if they are not flattened?
+        # Can fully-connected layers accept data if they are not flattened?
 
         # Finally, we need our two-layer perceptron (two fully-connected layers) at the end of the network:
-        # x = self. ...
-        # ...
         x = self.fc1(x)
         x = self.relu(x)
         x = self.fc2(x)
@@ -196,15 +174,11 @@ transform = transforms.Compose(
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 
-#######################################################
-# *** TASK 1 ***
 # Define number of epochs and batch size:
 
-# Path to the sampled CIFAR-100 dataset:
-image_dir = 'resources/image-source/test-all-source/'  ### change this
+image_dir = 'resources/image-source/test-all-source/'
 
-# Path to the labels of the sampled CIFAR-100 subset
-label_dir = 'resources/cse40868-final-project-labels.csv'  ### change this
+label_dir = 'resources/cse40868-final-project-labels.csv'
 
 epochs = 5
 batch_size = 50
@@ -212,19 +186,13 @@ batch_size = 50
 # *** THINK *** Should we set the # of epochs as large as possible? Why?
 # *** THINK *** If we find that the evaluation accuracy is low, should we increase or decrease the # of epochs?
 
-#
-#######################################################
-
-# Load CIFAR-10 dataset
-# train_data = CIFAR10("./data", train=True, download=True, transform=ToTensor())
-# test_data = CIFAR10("./data", train=False, download=True, transform=ToTensor())
 data = FaceDataset(img_dir=image_dir, label_dir=label_dir, transform=transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)))
 
 train_len = int(len(data) * 0.8)
 val_len = int(len(data) * 0.1)
 test_len = int(len(data) - train_len - val_len)
 train_data, val_data, test_data = random_split(data, [train_len, val_len, test_len])
-classes = ["me-source", "everyone-source"] ##### change this
+classes = ["me-source", "everyone-source"]
 
 # Prepare data loaders for train, validation and test data splits
 train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=False, drop_last=False, num_workers=2)
@@ -233,26 +201,33 @@ test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, drop_l
 
 if __name__ == '__main__':
 
-    # *** TASK 1 ***
-
     # Specify the operation mode:
     # 'train' = training with your train and validation data splits
     # 'eval'  = evaluation of the trained model with your test data split
+
+    ############################
+    ######## Start Here ########
+    ############################
     mode = 'eval'
 
     # Path where you plan to save the best model during training
     my_best_model = "CSE40868_final_project_best_model.pth"
 
-    # Set the device (GPU or CPU, depending on availability)
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    print("Currently using device: ", device)
 
+    device = torch.device("cpu")
     # Initialize the model and print out its configuration
     model = CNN(numChannels=3, numClasses=2)
     model.to(device)
-
-    print("\n\nModel summary:\n\n")
     summary(model, input_size=(3, 32, 32))
+    # Set the device (GPU or CPU, depending on availability)
+    device = torch.device(
+        "mps:0" if torch.backends.mps.is_available() else "cuda:0" if torch.cuda.is_available() else "cpu"
+    )
+
+    model.to(device)
+
+    print("Currently using device: ", device)
+    print("\n\nModel summary:\n\n")
 
     if mode == "train":
 
@@ -263,13 +238,8 @@ if __name__ == '__main__':
         optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
         # optimizer = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
 
-        #######################################################
-        # *** TASK 1 *** Try different optimizers (can be Adam or SGD).
-        #                Try different parameters (learning rate, momentum).
-        #                Can you notice any difference among these configurations?
-        #                Try to explain what you observed in a few sentences
-        #                (there's a space at the end of this notebook for answers).
-        #######################################################
+        # Try different optimizers (can be Adam or SGD).
+        # Try different parameters (learning rate, momentum).
 
         running_loss = .0
         best_acc = .0
