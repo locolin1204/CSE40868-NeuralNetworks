@@ -49,12 +49,15 @@ Adam is used in the training. By keeping track of the mean gradients and the var
 ## 3. Ideas for Improvement
 
 1. Removing the Classification Layer
+
 Since the model has a very high accuracy on the image set, I would like to try removing the last classification layer. Where I could directly get the values of the neurons and weight from the fully connected layers. This allows me to extend this project to a more practical use case, and extends beyond binary classification.
 
 2. Extending it to Multiclass Classification
+
 With the current binary classification model getting a relatively high accuracy, I could try doing multiclass classification on multiple people, e.g. celebrities, my family members, friends, etc. There are different dataset that categorize different celebrities, which is a possible solution.
 
 3. Face Detection
+
 Rather than extending it further, it is also possible to try going to the raw face detection direction. Face detecting would be a great direction to learn, where I could learn to develop a neural network that detects faces in an image. However, the complexity of face detection compared to binary classification may be much higher, and the data set may require much bigger as well as longer training time. I am not sure the feasibility for implementing this idea, would do further consultation to get a better understanding.
 
    
