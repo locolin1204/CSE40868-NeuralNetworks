@@ -1,3 +1,5 @@
-resources/*
+resources/image-source/everyone-source/
+resources/image-source/me-source/
+resources/image-source/testing-source-for-github/
+resources/img/
 test.py
-!resources/image-source/testing-source-for-github

@@ -7,14 +7,14 @@ hlo2
 1. Number and Types of Layers
 The reason I chose 5 convolution layers, is because the sample data are all faces, and it is not that complex, facial features such as eyes, nose, mouth, skin color, etc could be extracted from 5 layers. There are 3 max pooling layers, the layers are used to down sample the image and extract the important features of the images. Batch normalization layers were used after 2 of the max pooling layer, to improve generalization of the model by reducing the effect of noise. The fully connected layers are used to learn the complex relationship between input and output features in the model and to provide a final classification for the output.
 
-| Layers                                                              |
-|---------------------------------------------------------------------|
-| Convolution 1 <br> ReLU <br> Max Pooling <br> Batch Normalisation 1 |
-| Convolution ReLU Max Pooling Batch Normalisation 2                  |
-| Convolution 3 <br> ReLU                                             |
-| Convolution 4 <br> ReLU                                             |
-| Convolution 5 <br> ReLU <br> Max Pooling                            |
-| Fully Connected 1 <br> ReLU <br> Fully Connected 2 <br> Softmax     |
+|                                 Layers                                 |
+|:----------------------------------------------------------------------:|
+|  Convolution 1 <br> ReLU <br> Max Pooling <br> Batch Normalisation 1   |
+|  Convolution <br> ReLU <br> Max Pooling <br> Batch Normalisation 2     |
+|                        Convolution 3 <br> ReLU                         |
+|                        Convolution 4 <br> ReLU                         |
+|                Convolution 5 <br> ReLU <br> Max Pooling                |
+|    Fully Connected 1 <br> ReLU <br> Fully Connected 2 <br> Softmax     |
 
 2. Loss Function
 Cross entropy loss is used in this model. The lower the cross entropy is, the better it is. It measures the difference between the predicted probability and actual occurrence of the event, and adjusts the model to a lower cross entropy through back propagation.
