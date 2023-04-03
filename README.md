@@ -11,7 +11,11 @@ Navigate to `neural_network_training.py`, scroll down to
     ############################
 ```
 where you can see `mode = (xxx)` change to `mode = 'eval'` if not already. Then you can run the program.
-It show the accuracy of the model afterwards.
+It should show the accuracy of the model afterwards.
+
+If it does not work (it may fail due to cpu/gpu allocation problem), you can try it to run in Jupyter Notebook `neural_network_training_backup.ipynb`.
+
+Or even on [Google Collab](https://colab.research.google.com/drive/17pIl2DQPUI87Mgb2OWKIN_GN8XCaVA5L?usp=sharing), but you may have to download the model `CSE40868_final_project_best_model.pth` from the repository and upload to your own Google Drive to get it working.
 
 
 ## 1. Neural Network Architecture
