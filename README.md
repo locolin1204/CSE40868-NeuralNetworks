@@ -2,6 +2,18 @@
 Colin Lo <br>
 hlo2
 
+## How to run
+
+Navigate to `neural_network_training.py`, scroll down to
+```
+    ############################
+    ######## Start Here ########
+    ############################
+```
+where you can see `mode = (xxx)` change to `mode = 'eval'` if not already. Then you can run the program.
+It show the accuracy of the model afterwards.
+
+
 ## 1. Neural Network Architecture
 
 1. Number and Types of Layers
