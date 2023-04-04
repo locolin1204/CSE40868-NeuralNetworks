@@ -1,6 +1,6 @@
 # CSE40868-NeuralNetworks
-Colin Lo <br>
-hlo2
+Name    | Colin Lo <br>
+NetID   | hlo2
 
 ## How to run
 
@@ -17,6 +17,19 @@ If it does not work (it may fail due to cpu/gpu allocation problem), you can try
 
 Or even on [Google Collab](https://colab.research.google.com/drive/17pIl2DQPUI87Mgb2OWKIN_GN8XCaVA5L?usp=sharing), but you may have to download the model `CSE40868_final_project_best_model.pth` from the repository and upload to your own Google Drive to get it working.
 
+
+## 0. Data and Preprocessing
+
+1. Data
+
+There are 450 images for both myself and everyone. Images of myself are images that I took everyday, and the images of everyone is downloaded from [Labeled Faces in the Wild](http://vis-www.cs.umass.edu/lfw/).
+
+2. Preprocessing
+
+Images from the database, Labeled Faces in the Wild are sized to be 250x250. 
+As images of myself are in arbitrary dimension and there might be too much unrelated 
+space around my face, I used the library MTCNN, to locate my face in the image, crop and down scale to 250x250.
+Codes can be found in `preprocessing.py`.
 
 ## 1. Neural Network Architecture
 
@@ -60,4 +73,8 @@ With the current binary classification model getting a relatively high accuracy,
 
 Rather than extending it further, it is also possible to try going to the raw face detection direction. Face detecting would be a great direction to learn, where I could learn to develop a neural network that detects faces in an image. However, the complexity of face detection compared to binary classification may be much higher, and the data set may require much bigger as well as longer training time. I am not sure the feasibility for implementing this idea, would do further consultation to get a better understanding.
 
-   
+4. Face with Mask Recognition
+
+It would be interesting to see what happens if I provide images with my mask on it. See if it is able to 
+recognize my face with mask it. Other accessories such as no glasses would also another possible direction to explore
+the face recognition.
