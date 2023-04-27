@@ -7,7 +7,7 @@ NetID   | hlo2
 There are 4 files can run.
 
 > For `neural_network_kernel.py`, `neural_network_tsne.py`,`neural_network_grad_cam.py`, where figures or images will be generated, these images can be found under`/final-solution/figures/`.
-1. `neural_network_training_improve.py`
+### 1. `neural_network_training_improve.py`
 
 This is the improved model for the classification.<br> You can do training and evaluation here.
 
@@ -20,7 +20,7 @@ Scroll down to
 where you can see `mode = (xxx)` change to `mode = 'eval'` if not already. Then you can run the program.
 It should show the accuracy of the model afterwards.
 
-2. `neural_network_kernel.py`
+### 2. `neural_network_kernel.py`
 
 This is for displaying kernel of a particular layer of the model.
 
@@ -34,13 +34,13 @@ for name, param in model.named_parameters():
 ```
 where you can choose which layer to preview.
 
-3. `neural_network_tsne.py`
+### 3. `neural_network_tsne.py`
 
 This is for generating t-SNE of the model.
 
 Scroll down to `my_weights = "CSE40868_final_project_best_model_improved.pth"` where you can choose which model to run t-SNE.
 
-4. `neural_network_grad_cam.py`
+### 4. `neural_network_grad_cam.py`
 
 This is for displaying GradCam of a particular image using the model.
 
