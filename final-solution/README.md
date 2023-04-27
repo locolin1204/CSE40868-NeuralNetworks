@@ -308,5 +308,8 @@ As it would be easier to have an idea what the training is, I create graphs for 
 
 Overall, after the adjustment, my improved model provides a much better generalisation than the first solution.
 
+## 4. Presentation of the Model
+
+The slideshow is named `CSE40868-NeuralNetworks-Final-Solution-Presentation.pdf`.
 
 
