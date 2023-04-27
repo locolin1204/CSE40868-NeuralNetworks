@@ -1,13 +1,13 @@
 import cv2
 from mtcnn import MTCNN
 from PIL import Image
-
+from tqdm import tqdm
 import os
 
 # folder path
 count = 0
 
-dir_path = f"resources/image-source/testing-source-for-github"
+dir_path = f"resources/image-source/temp"
 
 # Iterate directory
 for path in os.listdir(dir_path):
@@ -17,9 +17,11 @@ for path in os.listdir(dir_path):
 print('File count:', count)
 
 detector = MTCNN()
-# for i in range(1, count+1):
-for i in range(17,18):
+for i in tqdm(range(1, count+1)):
+# for i in range(17,18):
     img_path = f"{dir_path}/original/me-{i}.JPG"
+    img_path = f"{dir_path}/me-{i}.JPG"
+
     image = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
     result = detector.detect_faces(image)
 
