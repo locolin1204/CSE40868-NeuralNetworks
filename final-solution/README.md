@@ -27,7 +27,7 @@ This is for displaying kernel of a particular layer of the model.
 Scroll down to `my_weights = "CSE40868_final_project_best_model_improved.pth"` where you can choose which model to show the kernel.
 
 Scroll down to
-```
+```python
 for name, param in model.named_parameters():
     if name == "conv5.weight":
         filters = param
